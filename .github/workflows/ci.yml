@@ -25,6 +25,8 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - run: npm install -g yarn
+      if:  ${{ matrix.node-version == 10.x }}
+    - run: yarn install
+    - run: yarn build --if-present
+    - run: yarn test
